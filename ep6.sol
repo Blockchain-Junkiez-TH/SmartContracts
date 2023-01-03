@@ -5,15 +5,13 @@ pragma solidity ^0.8.9;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MyToken is ERC721, Ownable {
+contract MyNFT is ERC721, Ownable {
 
     constructor() ERC721("MyToken", "MTK") {}
-
-
+    
     uint256 public maxmint=10;
     uint256 public currentMint;
 
-   
     function mint(address to,uint256 amount) public payable{
         
         require (msg.value >= amount * 10**17 ,"wrong amount"); //100000000000000000
