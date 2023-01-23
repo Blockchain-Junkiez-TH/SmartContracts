@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MyNFT is ERC721, Ownable {
 
-    constructor() ERC721("MyToken", "MTK") {}
+    constructor() ERC721("TH_NFT", "THNFT") {}
     
     uint256 public maxmint=10;
     uint256 public currentMint;
