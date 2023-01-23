@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 // BlockchainJunkiez : https://www.youtube.com/channel/UCEV2dnVVEe5bDB0JKVU330A/
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -19,9 +19,6 @@ contract TH_NFT is ERC721, Ownable {
     uint256 public maxmint=10;
     uint256 public currentMint;
     
-
-    
-    /// Added EP7 ////
     uint256 public price = 1; //Added EP7
     address public ERC20Add; //Added @EP7
 
@@ -36,8 +33,10 @@ contract TH_NFT is ERC721, Ownable {
     function mint(address to,uint256 amount) public {
         
         require (currentMint + amount <= maxmint,"max exceed");
-        require (IERC20(ERC20Add).balanceOf(msg.sender) >= amount * price,"not enough balance");
-        require (IERC20(ERC20Add).transferFrom(msg.sender,address(this), amount * price),"Transfer Error");
+
+        require (IERC20(ERC20Add).balanceOf(msg.sender) >= amount * price,"not enough balance");  //Added @EP7
+        require (IERC20(ERC20Add).transferFrom(msg.sender,address(this), amount * price),"Transfer Error");  //Added @EP7
+
         //start minting
         for (uint i=0; i<amount; i++){
             _safeMint(to, currentMint);
